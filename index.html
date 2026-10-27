@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>darkpyxlz</title>
+<meta name="description" content="Projects by darkpyxlz: SAO and SYPT 2027.">
+<style>
+  :root { --bg: #F3F4F6; --card: #FFFFFF; --ink: #1F2937; --muted: #6B7280; --accent: #0F766E; --line: #E5E7EB; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111827; --card: #1F2937; --ink: #F3F4F6; --muted: #9CA3AF; --accent: #2DD4BF; --line: #374151; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 16px; }
+  h1 { font-size: 2rem; margin: 0 0 4px; }
+  .lede { color: var(--muted); margin: 0 0 32px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { margin: 0 0 6px; font-size: 1.25rem; }
+  .card h2 a { color: var(--ink); text-decoration: none; }
+  .card h2 a:hover { color: var(--accent); }
+  .card p { margin: 0 0 12px; color: var(--muted); }
+  .card ul { margin: 0; padding-left: 18px; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>darkpyxlz</h1>
+  <p class="lede">Projects and write-ups.</p>
+  <div class="grid">
+    <section class="card">
+      <h2><a href="/SAO/">SAO</a></h2>
+      <p>The SAO project.</p>
+      <ul>
+        <li><a href="/SAO/">Open SAO</a></li>
+        <li><a href="https://github.com/darkpyxlz/SAO">Source on GitHub</a></li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2><a href="/sypt/">SYPT 2027</a></h2>
+      <p>B8 · Cold drink: a can cooled in an ice, water and salt bath.</p>
+      <ul>
+        <li><a href="/sypt/">Simulator in the browser</a></li>
+        <li><a href="/sypt/b8-cold-drink/B8-salted-ice-bath.pdf">Report (PDF)</a></li>
+        <li><a href="/sypt/b8-cold-drink/B8-model-derivation.pdf">Model derivation (PDF)</a></li>
+        <li><a href="/sypt/b8-cold-drink/sypt_salt_ice_model.pdf">Salt–ice model (PDF)</a></li>
+        <li><a href="https://github.com/darkpyxlz/sypt">Source on GitHub</a></li>
+      </ul>
+    </section>
+  </div>
+  <footer><a href="https://github.com/darkpyxlz">github.com/darkpyxlz</a></footer>
+</main>
+</body>
+</html>
