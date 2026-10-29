@@ -4,50 +4,83 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>darkpyxlz</title>
-<meta name="description" content="Projects by darkpyxlz: SAO and SYPT 2027.">
+<meta name="description" content="Projects by darkpyxlz: Firmament (SAO), ChemCorp and SYPT 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
-  :root { --bg: #F3F4F6; --card: #FFFFFF; --ink: #1F2937; --muted: #6B7280; --accent: #0F766E; --line: #E5E7EB; }
+  :root {
+    --bg: #F4F5F7; --card: #FFFFFF; --ink: #111827; --muted: #5B6472; --line: #E3E6EB;
+    --a1: #4F46E5; --a2: #0F766E; --a3: #C2410C; --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px rgba(16,24,40,.06);
+  }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #111827; --card: #1F2937; --ink: #F3F4F6; --muted: #9CA3AF; --accent: #2DD4BF; --line: #374151; }
+    :root { --bg: #0D1117; --card: #161B22; --ink: #E6EDF3; --muted: #9AA4B2; --line: #2A313C;
+            --a1: #8B87FF; --a2: #2DD4BF; --a3: #FB923C; --shadow: none; }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 760px; margin: 0 auto; padding: 56px 16px; }
-  h1 { font-size: 2rem; margin: 0 0 4px; }
-  .lede { color: var(--muted); margin: 0 0 32px; }
-  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
-  .card h2 { margin: 0 0 6px; font-size: 1.25rem; }
-  .card h2 a { color: var(--ink); text-decoration: none; }
-  .card h2 a:hover { color: var(--accent); }
-  .card p { margin: 0 0 12px; color: var(--muted); }
-  .card ul { margin: 0; padding-left: 18px; }
-  a { color: var(--accent); }
-  footer { margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 72px 16px 48px; }
+  header { margin-bottom: 40px; }
+  h1 { font: 700 clamp(2.2rem, 6vw, 3.2rem)/1.1 "Space Grotesk", Inter, sans-serif; margin: 0 0 10px; letter-spacing: -0.02em; }
+  .lede { color: var(--muted); margin: 0; font-size: 1.1rem; max-width: 36em; }
+  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+  .card { position: relative; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line);
+          border-radius: 16px; padding: 24px; box-shadow: var(--shadow); transition: transform .15s ease, border-color .15s ease; }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; border-radius: 16px 16px 0 0; background: var(--accent); }
+  .tag { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 6px; }
+  .card h2 { font: 700 1.45rem/1.2 "Space Grotesk", Inter, sans-serif; margin: 0 0 8px; }
+  .card p { color: var(--muted); margin: 0 0 18px; }
+  .play { align-self: flex-start; display: inline-block; padding: 9px 16px; border-radius: 10px; background: var(--accent);
+          color: #fff; font-weight: 600; text-decoration: none; margin-bottom: 14px; }
+  @media (prefers-color-scheme: dark) { .play { color: #0D1117; } }
+  .play:hover { filter: brightness(1.08); }
+  ul { list-style: none; padding: 0; margin: auto 0 0; border-top: 1px solid var(--line); }
+  li { border-bottom: 1px solid var(--line); }
+  li:last-child { border-bottom: 0; }
+  li a { display: flex; justify-content: space-between; padding: 8px 0; color: var(--ink); text-decoration: none; font-size: .95rem; }
+  li a:hover { color: var(--accent); }
+  li a span { color: var(--muted); font-size: .85rem; }
+  footer { margin-top: 48px; color: var(--muted); font-size: .9rem; }
+  footer a { color: var(--muted); }
+  .sao { --accent: var(--a1); } .chem { --accent: var(--a2); } .sypt { --accent: var(--a3); }
 </style>
 </head>
 <body>
 <main>
-  <h1>darkpyxlz</h1>
-  <p class="lede">Projects and write-ups.</p>
+  <header>
+    <h1>darkpyxlz</h1>
+    <p class="lede">Games and physics, built for the browser.</p>
+  </header>
   <div class="grid">
-    <section class="card">
-      <h2><a href="/SAO/">SAO</a></h2>
-      <p>The SAO project.</p>
+    <section class="card sao">
+      <p class="tag">Strategy game</p>
+      <h2>Firmament</h2>
+      <p>Run a space corporation on the real night sky: start on one star and colonise all 88 constellations.</p>
+      <a class="play" href="/SAO/">Play</a>
       <ul>
-        <li><a href="/SAO/">Open SAO</a></li>
-        <li><a href="https://github.com/darkpyxlz/SAO">Source on GitHub</a></li>
+        <li><a href="https://github.com/darkpyxlz/SAO">Source <span>GitHub</span></a></li>
       </ul>
     </section>
-    <section class="card">
-      <h2><a href="/sypt/">SYPT 2027</a></h2>
-      <p>B8 · Cold drink: a can cooled in an ice, water and salt bath.</p>
+    <section class="card chem">
+      <p class="tag">Idle game</p>
+      <h2>ChemCorp</h2>
+      <p>An organic chemistry idle game: run real reactions, research 111 of them, learn in the Academy and automate a plant.</p>
+      <a class="play" href="/chemcorp/">Play</a>
       <ul>
-        <li><a href="/sypt/">Simulator in the browser</a></li>
-        <li><a href="/sypt/b8-cold-drink/B8-salted-ice-bath.pdf">Report (PDF)</a></li>
-        <li><a href="/sypt/b8-cold-drink/B8-model-derivation.pdf">Model derivation (PDF)</a></li>
-        <li><a href="/sypt/b8-cold-drink/sypt_salt_ice_model.pdf">Salt–ice model (PDF)</a></li>
-        <li><a href="https://github.com/darkpyxlz/sypt">Source on GitHub</a></li>
+        <li><a href="https://github.com/darkpyxlz/chemcorp">Source <span>GitHub</span></a></li>
+      </ul>
+    </section>
+    <section class="card sypt">
+      <p class="tag">SYPT 2027 · B8</p>
+      <h2>Cold drink</h2>
+      <p>How fast a can cools in ice, water and salt: a simulator in the browser and the write-ups behind it.</p>
+      <a class="play" href="/sypt/">Open simulator</a>
+      <ul>
+        <li><a href="/sypt/b8-cold-drink/B8_strong_case.pdf">Strong case <span>PDF</span></a></li>
+        <li><a href="/sypt/b8-cold-drink/B8-salted-ice-bath.pdf">Report <span>PDF</span></a></li>
+        <li><a href="/sypt/b8-cold-drink/B8-model-derivation.pdf">Model derivation <span>PDF</span></a></li>
+        <li><a href="/sypt/b8-cold-drink/sypt_salt_ice_model.pdf">Salt–ice model <span>PDF</span></a></li>
+        <li><a href="https://github.com/darkpyxlz/sypt">Source <span>GitHub</span></a></li>
       </ul>
     </section>
   </div>
