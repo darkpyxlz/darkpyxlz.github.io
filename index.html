@@ -4,87 +4,198 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>darkpyxlz</title>
-<meta name="description" content="Projects by darkpyxlz: Firmament (SAO), ChemCorp and SYPT 2027.">
+<meta name="description" content="Projects by darkpyxlz: Firmament, ChemCorp, Cytos and SYPT 2027.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
-  :root {
-    --bg: #F4F5F7; --card: #FFFFFF; --ink: #111827; --muted: #5B6472; --line: #E3E6EB;
-    --a1: #4F46E5; --a2: #0F766E; --a3: #C2410C; --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px rgba(16,24,40,.06);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0D1117; --card: #161B22; --ink: #E6EDF3; --muted: #9AA4B2; --line: #2A313C;
-            --a1: #8B87FF; --a2: #2DD4BF; --a3: #FB923C; --shadow: none; }
-  }
+  :root { --bg:#F4F5F7; --card:#FFFFFF; --ink:#111827; --muted:#5B6472; --line:#E3E6EB; --acc:#4F46E5; --bad:#B91C1C;
+    --shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.06); }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0D1117; --card:#161B22; --ink:#E6EDF3; --muted:#9AA4B2; --line:#2A313C; --acc:#8B87FF; --bad:#F87171; --shadow:none; } }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 1040px; margin: 0 auto; padding: 72px 16px 48px; }
-  header { margin-bottom: 40px; }
-  h1 { font: 700 clamp(2.2rem, 6vw, 3.2rem)/1.1 "Space Grotesk", Inter, sans-serif; margin: 0 0 10px; letter-spacing: -0.02em; }
-  .lede { color: var(--muted); margin: 0; font-size: 1.1rem; max-width: 36em; }
-  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
-  .card { position: relative; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line);
-          border-radius: 16px; padding: 24px; box-shadow: var(--shadow); transition: transform .15s ease, border-color .15s ease; }
-  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; border-radius: 16px 16px 0 0; background: var(--accent); }
-  .tag { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 6px; }
-  .card h2 { font: 700 1.45rem/1.2 "Space Grotesk", Inter, sans-serif; margin: 0 0 8px; }
-  .card p { color: var(--muted); margin: 0 0 18px; }
-  .play { align-self: flex-start; display: inline-block; padding: 9px 16px; border-radius: 10px; background: var(--accent);
-          color: #fff; font-weight: 600; text-decoration: none; margin-bottom: 14px; }
-  @media (prefers-color-scheme: dark) { .play { color: #0D1117; } }
-  .play:hover { filter: brightness(1.08); }
-  ul { list-style: none; padding: 0; margin: auto 0 0; border-top: 1px solid var(--line); }
-  li { border-bottom: 1px solid var(--line); }
-  li:last-child { border-bottom: 0; }
-  li a { display: flex; justify-content: space-between; padding: 8px 0; color: var(--ink); text-decoration: none; font-size: .95rem; }
-  li a:hover { color: var(--accent); }
-  li a span { color: var(--muted); font-size: .85rem; }
-  footer { margin-top: 48px; color: var(--muted); font-size: .9rem; }
-  footer a { color: var(--muted); }
-  .sao { --accent: var(--a1); } .chem { --accent: var(--a2); } .sypt { --accent: var(--a3); }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
+  [hidden] { display:none !important; }
+  main { max-width:1040px; margin:0 auto; padding:72px 16px 48px; }
+  header { margin-bottom:40px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+  h1 { font:700 clamp(2.2rem,6vw,3.2rem)/1.1 "Space Grotesk",Inter,sans-serif; margin:0 0 10px; letter-spacing:-.02em; }
+  .lede { color:var(--muted); margin:0; font-size:1.1rem; max-width:36em; }
+  .grid { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
+  .card { position:relative; display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; box-shadow:var(--shadow); transition:transform .15s,border-color .15s; }
+  .card:hover { transform:translateY(-2px); border-color:var(--accent); }
+  .card::before { content:""; position:absolute; inset:0 0 auto 0; height:4px; border-radius:16px 16px 0 0; background:var(--accent); }
+  .tag { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin:0 0 6px; }
+  .card h2 { font:700 1.45rem/1.2 "Space Grotesk",Inter,sans-serif; margin:0 0 8px; }
+  .card p { color:var(--muted); margin:0 0 18px; }
+  .play { align-self:flex-start; display:inline-block; padding:9px 16px; border-radius:10px; background:var(--accent); color:#fff; font-weight:600; text-decoration:none; margin-bottom:14px; }
+  .play:hover { filter:brightness(1.08); }
+  ul { list-style:none; padding:0; margin:auto 0 0; border-top:1px solid var(--line); }
+  li { border-bottom:1px solid var(--line); } li:last-child { border-bottom:0; }
+  li a { display:flex; justify-content:space-between; padding:8px 0; color:var(--ink); text-decoration:none; font-size:.95rem; }
+  li a:hover { color:var(--accent); } li a span { color:var(--muted); font-size:.85rem; }
+  footer { margin-top:48px; color:var(--muted); font-size:.9rem; display:flex; gap:16px; flex-wrap:wrap; }
+  footer a, .linkbtn { color:var(--muted); background:none; border:0; font:inherit; cursor:pointer; padding:0; text-decoration:underline; }
+  .btn { border:1px solid var(--line); background:var(--card); color:var(--ink); padding:8px 14px; border-radius:10px; font:600 .9rem Inter,sans-serif; cursor:pointer; }
+  .btn.primary { background:var(--acc); border-color:var(--acc); color:#fff; }
+  .btn.danger { color:var(--bad); }
+  .btn.sm { padding:4px 10px; font-size:.8rem; }
+  input, textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); font:inherit; }
+  textarea { font:12px/1.4 ui-monospace,monospace; min-height:140px; }
+  label { display:block; font-size:.85rem; color:var(--muted); margin:10px 0 4px; }
+  /* lock screen */
+  .gate { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; }
+  .gate form { width:min(380px,100%); background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px; box-shadow:var(--shadow); text-align:center; }
+  .gate h1 { font-size:2rem; }
+  .gate .row { display:flex; gap:8px; margin-top:14px; }
+  .err { color:var(--bad); font-size:.9rem; min-height:1.4em; margin:8px 0 0; }
+  .shake { animation:shake .35s; } @keyframes shake { 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  /* admin */
+  .admin { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin-bottom:28px; box-shadow:var(--shadow); }
+  .admin h2 { font:700 1.3rem "Space Grotesk",sans-serif; margin:0 0 4px; }
+  .admin .note { color:var(--muted); font-size:.88rem; margin:0 0 12px; }
+  .arow { display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; padding:10px 0; border-top:1px solid var(--line); }
+  .arow .sw { width:14px; height:14px; border-radius:4px; }
+  .edit { grid-column:1/-1; display:grid; gap:4px; grid-template-columns:1fr 1fr; }
+  .edit .full { grid-column:1/-1; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; } @media (max-width:640px){ .two,.edit{grid-template-columns:1fr} }
+  .badge { font-size:.7rem; padding:2px 8px; border-radius:99px; border:1px solid var(--line); color:var(--muted); margin-left:6px; }
 </style>
 </head>
 <body>
-<main>
-  <header>
+<div id="gate" class="gate" hidden>
+  <form id="gate-form" autocomplete="off">
     <h1>darkpyxlz</h1>
-    <p class="lede">Games and physics, built for the browser.</p>
+    <p class="lede" style="font-size:1rem">This site is private. Enter the password.</p>
+    <div class="row"><input id="pw" type="password" placeholder="Password" aria-label="Password" autofocus><button class="btn primary">Enter</button></div>
+    <p class="err" id="gate-err"></p>
+  </form>
+</div>
+
+<main id="site" hidden>
+  <header>
+    <div><h1>darkpyxlz</h1><p class="lede">Games and physics, built for the browser.</p></div>
+    <div id="admin-chip"></div>
   </header>
-  <div class="grid">
-    <section class="card sao">
-      <p class="tag">Strategy game</p>
-      <h2>Firmament</h2>
-      <p>Run a space corporation on the real night sky: start on one star and colonise all 88 constellations.</p>
-      <a class="play" href="/SAO/">Play</a>
-      <ul>
-        <li><a href="https://github.com/darkpyxlz/SAO">Source <span>GitHub</span></a></li>
-      </ul>
-    </section>
-    <section class="card chem">
-      <p class="tag">Idle game</p>
-      <h2>ChemCorp</h2>
-      <p>An organic chemistry idle game: run real reactions, research 111 of them, learn in the Academy and automate a plant.</p>
-      <a class="play" href="/chemcorp/">Play</a>
-      <ul>
-        <li><a href="https://github.com/darkpyxlz/chemcorp">Source <span>GitHub</span></a></li>
-      </ul>
-    </section>
-    <section class="card sypt">
-      <p class="tag">SYPT 2027 · B8</p>
-      <h2>Cold drink</h2>
-      <p>How fast a can cools in ice, water and salt: a simulator in the browser and the write-ups behind it.</p>
-      <a class="play" href="/sypt/">Open simulator</a>
-      <ul>
-        <li><a href="/sypt/b8-cold-drink/B8_strong_case.pdf">Strong case <span>PDF</span></a></li>
-        <li><a href="/sypt/b8-cold-drink/B8-salted-ice-bath.pdf">Report <span>PDF</span></a></li>
-        <li><a href="/sypt/b8-cold-drink/B8-model-derivation.pdf">Model derivation <span>PDF</span></a></li>
-        <li><a href="/sypt/b8-cold-drink/sypt_salt_ice_model.pdf">Salt–ice model <span>PDF</span></a></li>
-        <li><a href="https://github.com/darkpyxlz/sypt">Source <span>GitHub</span></a></li>
-      </ul>
-    </section>
-  </div>
-  <footer><a href="https://github.com/darkpyxlz">github.com/darkpyxlz</a></footer>
+  <section id="admin" class="admin" hidden></section>
+  <div class="grid" id="grid"></div>
+  <footer><a href="https://github.com/darkpyxlz">github.com/darkpyxlz</a><button class="linkbtn" id="btn-admin">Admin</button><button class="linkbtn" id="btn-lock">Lock</button></footer>
 </main>
+
+<script>
+'use strict';
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const LS = 'darkpyxlz-config-draft', SS = 'darkpyxlz-auth';
+async function hash(pw) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('darkpyxlz:' + pw));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+const store = { get(k, s = localStorage) { try { return s.getItem(k); } catch (e) { return null; } }, set(k, v, s = localStorage) { try { v == null ? s.removeItem(k) : s.setItem(k, v); } catch (e) {} } };
+
+let published = null, cfg = null, role = null; // role: 'user' | 'admin'
+async function boot() {
+  try { published = await (await fetch('site-config.json', { cache: 'no-cache' })).json(); }
+  catch (e) { document.body.innerHTML = '<p style="padding:24px">Could not load site-config.json.</p>'; return; }
+  const draft = store.get(LS);
+  cfg = draft ? JSON.parse(draft) : structuredClone(published);
+  const saved = store.get(SS, sessionStorage);
+  if (saved === cfg.adminHash) role = 'admin'; else if (saved === cfg.siteHash) role = 'user';
+  role ? show() : lock();
+}
+function lock() { role = null; store.set(SS, null, sessionStorage); $('#site').hidden = true; $('#gate').hidden = false; $('#pw').value = ''; $('#pw').focus(); }
+$('#gate-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const h = await hash($('#pw').value);
+  if (h === cfg.adminHash) role = 'admin'; else if (h === cfg.siteHash) role = 'user';
+  else { $('#gate-err').textContent = 'Wrong password.'; const f = $('#gate-form'); f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake'); return; }
+  store.set(SS, h, sessionStorage); $('#gate-err').textContent = ''; show();
+});
+function show() { $('#gate').hidden = true; $('#site').hidden = false; render(); }
+$('#btn-lock').onclick = lock;
+$('#btn-admin').onclick = async () => {
+  if (role === 'admin') { $('#admin').hidden = !$('#admin').hidden; return renderAdmin(); }
+  const pw = prompt('Admin password'); if (pw == null) return;
+  const h = await hash(pw);
+  if (h !== cfg.adminHash) return alert('Wrong admin password.');
+  role = 'admin'; store.set(SS, h, sessionStorage); $('#admin').hidden = false; render();
+};
+
+function render() {
+  $('#grid').innerHTML = cfg.projects.filter((p) => !p.hidden || role === 'admin').map((p) => `
+    <section class="card" style="--accent:${esc(p.color)};${p.hidden ? 'opacity:.5' : ''}">
+      <p class="tag">${esc(p.tag)}${p.hidden ? '<span class="badge">hidden</span>' : ''}</p>
+      <h2>${esc(p.title)}</h2><p>${esc(p.desc)}</p>
+      ${p.play ? `<a class="play" href="${esc(p.play)}">${esc(p.playLabel || 'Play')}</a>` : ''}
+      <ul>${(p.links || []).map(([a, b, u]) => `<li><a href="${esc(u)}">${esc(a)} <span>${esc(b)}</span></a></li>`).join('')}</ul>
+    </section>`).join('');
+  $('#btn-admin').textContent = role === 'admin' ? 'Admin panel' : 'Admin';
+  $('#admin-chip').innerHTML = role === 'admin' ? '<span class="badge" style="font-size:.8rem">🔑 admin</span>' : '';
+  if (role === 'admin') renderAdmin(); else $('#admin').hidden = true;
+}
+const dirty = () => JSON.stringify(cfg) !== JSON.stringify(published);
+function saveDraft() { store.set(LS, dirty() ? JSON.stringify(cfg) : null); render(); }
+function renderAdmin() {
+  if ($('#admin').hidden) return;
+  $('#admin').innerHTML = `<h2>Admin</h2>
+    <p class="note">Changes are saved as a draft in this browser only. To publish them for everyone, press <b>Export config</b> and commit the result as <code>site-config.json</code> in the darkpyxlz.github.io repository. ${dirty() ? '<b style="color:var(--bad)">You have unpublished changes.</b>' : ''}</p>
+    ${cfg.projects.map((p, i) => `<div class="arow"><span class="sw" style="background:${esc(p.color)}"></span><b>${esc(p.title)}</b>
+      <span><button class="btn sm" data-a="up" data-i="${i}">↑</button> <button class="btn sm" data-a="down" data-i="${i}">↓</button>
+      <button class="btn sm" data-a="toggle" data-i="${i}">${p.hidden ? 'Show' : 'Hide'}</button> <button class="btn sm" data-a="edit" data-i="${i}">Edit</button>
+      <button class="btn sm danger" data-a="del" data-i="${i}">Delete</button></span>
+      <div class="edit" id="edit-${i}" hidden>
+        <div><label>Title</label><input data-f="title" data-i="${i}" value="${esc(p.title)}"></div>
+        <div><label>Tag</label><input data-f="tag" data-i="${i}" value="${esc(p.tag)}"></div>
+        <div class="full"><label>Description</label><input data-f="desc" data-i="${i}" value="${esc(p.desc)}"></div>
+        <div><label>Play link</label><input data-f="play" data-i="${i}" value="${esc(p.play)}"></div>
+        <div><label>Button label</label><input data-f="playLabel" data-i="${i}" value="${esc(p.playLabel)}"></div>
+        <div><label>Colour</label><input data-f="color" data-i="${i}" value="${esc(p.color)}"></div>
+        <div class="full"><label>Links (one per line: name | type | url)</label><textarea data-f="links" data-i="${i}" style="min-height:70px">${esc((p.links || []).map((l) => l.join(' | ')).join('\n'))}</textarea></div>
+      </div></div>`).join('')}
+    <div style="margin:12px 0"><button class="btn" data-a="add">+ Add project</button></div>
+    <div class="two">
+      <div><label>New site password</label><input id="new-site" type="password" placeholder="leave blank to keep"></div>
+      <div><label>New admin password</label><input id="new-admin" type="password" placeholder="leave blank to keep"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" data-a="pw">Change passwords</button>
+      <button class="btn primary" data-a="export">Export config</button>
+      <button class="btn danger" data-a="discard" ${dirty() ? '' : 'disabled'}>Discard draft</button>
+    </div>
+    <textarea id="export" hidden readonly></textarea>`;
+}
+$('#admin').addEventListener('input', (e) => {
+  const el = e.target, i = el.dataset.i, f = el.dataset.f; if (f == null) return;
+  const p = cfg.projects[i];
+  p[f] = f === 'links' ? el.value.split('\n').map((l) => l.split('|').map((s) => s.trim())).filter((l) => l[0] && l[2]) : el.value;
+  store.set(LS, JSON.stringify(cfg));
+  $('#grid').innerHTML = ''; const open = i; render(); $('#edit-' + open).hidden = false;
+  const again = document.querySelector(`[data-f="${f}"][data-i="${i}"]`); again.focus(); again.setSelectionRange?.(again.value.length, again.value.length);
+});
+$('#admin').addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-a]'); if (!b) return;
+  const i = +b.dataset.i, P = cfg.projects, a = b.dataset.a;
+  if (a === 'edit') { $('#edit-' + i).hidden = !$('#edit-' + i).hidden; return; }
+  if (a === 'up' && i > 0) [P[i - 1], P[i]] = [P[i], P[i - 1]];
+  if (a === 'down' && i < P.length - 1) [P[i + 1], P[i]] = [P[i], P[i + 1]];
+  if (a === 'toggle') P[i].hidden = !P[i].hidden;
+  if (a === 'del' && confirm(`Delete "${P[i].title}"?`)) P.splice(i, 1);
+  if (a === 'add') P.push({ id: 'p' + Date.now(), tag: 'New', title: 'New project', desc: '', play: '', playLabel: 'Play', color: '#4F46E5', links: [], hidden: true });
+  if (a === 'pw') {
+    const s = $('#new-site').value, ad = $('#new-admin').value;
+    if (!s && !ad) return alert('Type a new password first.');
+    if (s) cfg.siteHash = await hash(s);
+    if (ad) { cfg.adminHash = await hash(ad); store.set(SS, cfg.adminHash, sessionStorage); }
+    alert('Passwords changed in your draft. Export and commit the config to apply them for everyone.');
+  }
+  if (a === 'discard' && confirm('Discard all unpublished changes?')) { cfg = structuredClone(published); store.set(LS, null); }
+  if (a === 'export') {
+    const t = JSON.stringify(cfg, null, 2); const ta = $('#export'); ta.hidden = false; ta.value = t; ta.select();
+    navigator.clipboard?.writeText(t).catch(() => {});
+    const blob = new Blob([t], { type: 'application/json' }); const l = document.createElement('a'); l.href = URL.createObjectURL(blob); l.download = 'site-config.json'; l.click();
+    return;
+  }
+  saveDraft();
+});
+boot();
+</script>
 </body>
 </html>

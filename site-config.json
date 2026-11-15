@@ -1,0 +1,94 @@
+{
+  "siteHash": "da90aab0fd4809ca2c17b79f798437ea73673033de06652ca2a48d2f4a5087d9",
+  "adminHash": "54da4a82e52c6ca877704909bf1cbcc530472c4b9043110fb70e27b2145093a3",
+  "projects": [
+    {
+      "id": "sao",
+      "tag": "Strategy game",
+      "title": "Firmament",
+      "desc": "Run a space corporation on the real night sky: start on one star and colonise all 88 constellations.",
+      "play": "/SAO/",
+      "playLabel": "Play",
+      "color": "#4F46E5",
+      "links": [
+        [
+          "Source",
+          "GitHub",
+          "https://github.com/darkpyxlz/SAO"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "id": "chem",
+      "tag": "Idle game",
+      "title": "ChemCorp",
+      "desc": "An organic chemistry idle game: run real reactions, research 111 of them, learn in the Academy and automate a plant.",
+      "play": "/chemcorp/",
+      "playLabel": "Play",
+      "color": "#0F766E",
+      "links": [
+        [
+          "Source",
+          "GitHub",
+          "https://github.com/darkpyxlz/chemcorp"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "id": "cytos",
+      "tag": "Idle game",
+      "title": "Cytos",
+      "desc": "Be a living cell: express genes, build organelles, run the electron transport chain, fight viruses, replicate and roll alleles.",
+      "play": "/biohub/",
+      "playLabel": "Play",
+      "color": "#2F8F83",
+      "links": [
+        [
+          "Source",
+          "GitHub",
+          "https://github.com/darkpyxlz/biohub"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "id": "sypt",
+      "tag": "SYPT 2027 · B8",
+      "title": "Cold drink",
+      "desc": "How fast a can cools in ice, water and salt: a simulator in the browser and the write-ups behind it.",
+      "play": "/sypt/",
+      "playLabel": "Open simulator",
+      "color": "#C2410C",
+      "links": [
+        [
+          "Strong case",
+          "PDF",
+          "/sypt/b8-cold-drink/B8_strong_case.pdf"
+        ],
+        [
+          "Report",
+          "PDF",
+          "/sypt/b8-cold-drink/B8-salted-ice-bath.pdf"
+        ],
+        [
+          "Model derivation",
+          "PDF",
+          "/sypt/b8-cold-drink/B8-model-derivation.pdf"
+        ],
+        [
+          "Salt–ice model",
+          "PDF",
+          "/sypt/b8-cold-drink/sypt_salt_ice_model.pdf"
+        ],
+        [
+          "Source",
+          "GitHub",
+          "https://github.com/darkpyxlz/sypt"
+        ]
+      ],
+      "hidden": false
+    }
+  ]
+}
