@@ -4,8 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>darkpyxlz · projects</title>
-<meta name="description" content="Every darkpyxlz project in one place: Firmament, ChemCorp, Cytos, Physbook, the SYPT B8 simulator, Aimtrain, Too Many Upgrades and florr horizons.">
-<meta name="color-scheme" content="dark">
+<meta name="description" content="Every darkpyxlz project in one place: Firmament, ChemCorp, Cytos, Physbook, the SYPT B8 simulator Aimtrain and Too Many Upgrades.">
+<meta name="color-scheme" content="dark light">
+<script>
+  try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  if (!document.documentElement.dataset.theme) document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+</script>
 <link rel="icon" href="avatar.jpg">
 <link rel="apple-touch-icon" href="avatar.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +31,40 @@
     --lime: #b3ff66;
     --orange: #ff9966;
     --radius: 10px;
+    --overlay: hsl(0 0% 100% / .08);
+    --overlay-2: hsl(0 0% 100% / .16);
+    --field: hsl(var(--h) 10% 8% / .78);
+    --navbg: hsl(var(--h) 10% 12% / .92);
+    --fade: hsl(var(--h) 10% 18% / .6);
+    --bgfilter: blur(14px) brightness(.35) saturate(1.2);
+    --cover-op: .18;
+    --shadow: 0 2px 10px hsl(0 0% 0% / .35);
+    --shadow-2: 0 6px 20px hsl(0 0% 0% / .5);
     color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --b1: hsl(var(--h) 14% 95%);
+    --b2: hsl(var(--h) 14% 90%);
+    --b3: hsl(var(--h) 14% 99%);
+    --b4: hsl(var(--h) 14% 89%);
+    --b5: hsl(var(--h) 14% 82%);
+    --c1: hsl(var(--h) 14% 13%);
+    --c2: hsl(var(--h) 10% 33%);
+    --c3: hsl(var(--h) 8% 46%);
+    --pink: #e0407f;
+    --blue: #0a6fb0;
+    --lime: #8fdc3f;
+    --orange: #ff9966;
+    --overlay: hsl(var(--h) 20% 20% / .07);
+    --overlay-2: hsl(var(--h) 20% 20% / .14);
+    --field: hsl(0 0% 100% / .88);
+    --navbg: hsl(0 0% 100% / .9);
+    --fade: hsl(0 0% 100% / .7);
+    --bgfilter: blur(14px) brightness(1.05) saturate(1.1) opacity(.45);
+    --cover-op: .12;
+    --shadow: 0 1px 3px hsl(var(--h) 20% 20% / .12), 0 4px 14px hsl(var(--h) 20% 20% / .08);
+    --shadow-2: 0 6px 20px hsl(var(--h) 20% 20% / .18);
+    color-scheme: light;
   }
   * { box-sizing: border-box; }
   html { background: var(--b1); }
@@ -38,7 +75,7 @@
   :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
   /* top bar */
-  .nav { position: sticky; top: 0; z-index: 20; background: hsl(var(--h) 10% 12% / .92); backdrop-filter: blur(8px);
+  .nav { position: sticky; top: 0; z-index: 20; background: var(--navbg); backdrop-filter: blur(8px);
          border-bottom: 1px solid var(--b3); }
   .nav-in { max-width: 1240px; margin: 0 auto; padding: 0 16px; height: 56px; display: flex; align-items: center; gap: 22px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-size: 1.15rem; letter-spacing: .01em; }
@@ -48,13 +85,39 @@
   .nav-links a:hover { color: var(--c1); }
   .nav-links a.on { color: var(--c1); border-color: var(--pink); }
 
+  .theme { margin-left: auto; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer;
+           background: var(--overlay); color: var(--c2); }
+  .theme:hover { background: var(--overlay-2); color: var(--c1); }
+  .theme .sun { display: none; }
+  :root[data-theme="dark"] .theme .sun { display: block; }
+  :root[data-theme="dark"] .theme .moon { display: none; }
+
+  /* about */
+  .about { margin-top: 28px; border-radius: var(--radius); overflow: hidden; background: var(--b3); box-shadow: var(--shadow); scroll-margin-top: 76px; }
+  .about-head { position: relative; height: 90px; overflow: hidden; background: linear-gradient(90deg, hsl(var(--h) 60% 50%), hsl(280 45% 45%)); }
+  .about-head::before { content: ""; position: absolute; inset: -16px; background: var(--bg) center / cover; filter: blur(8px); opacity: .45; mix-blend-mode: luminosity; }
+  .about-in { display: grid; grid-template-columns: auto 1fr; gap: 6px 22px; padding: 0 24px 22px; }
+  .about-av { position: relative; z-index: 1; width: 112px; height: 112px; margin-top: -48px; border-radius: 50%; image-rendering: pixelated; border: 4px solid var(--b3); background: var(--b4); }
+  .about h2 { margin: 12px 0 0; font-size: 1.6rem; font-weight: 900; line-height: 1.2; }
+  .about-sub { color: var(--c2); font-weight: 700; }
+  .about p { grid-column: 1 / -1; margin: 10px 0 0; color: var(--c2); max-width: 62em; }
+  .about-stats { grid-column: 1 / -1; display: flex; gap: 10px 28px; flex-wrap: wrap; margin-top: 14px; }
+  .about-stats div { display: flex; flex-direction: column; font-size: .8rem; font-weight: 700; color: var(--c3); }
+  .about-stats b { font-size: 1.3rem; font-weight: 900; color: var(--c1); }
+  .about-links { grid-column: 1 / -1; display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; font-weight: 800; text-decoration: none; font-size: .9rem;
+         background: var(--overlay); color: var(--c1); }
+  .btn:hover { background: var(--overlay-2); }
+  .btn.yt { background: var(--pink); color: #fff; }
+  .btn.yt:hover { filter: brightness(1.08); }
+
   /* search */
   .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
   .search { position: relative; margin-top: 20px; border-radius: var(--radius) var(--radius) 0 0; background: var(--b2); padding: 22px 20px 16px; }
   .search-bg { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
-  .search-bg::before { content: ""; position: absolute; inset: -20px; background: var(--bg) center / cover; filter: blur(14px) brightness(.35) saturate(1.2); }
+  .search-bg::before { content: ""; position: absolute; inset: -20px; background: var(--bg) center / cover; filter: var(--bgfilter); }
   .search > :not(.search-bg) { position: relative; }
-  .sbox { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; background: hsl(var(--h) 10% 8% / .78); border-radius: 26px; padding: 8px 16px 8px 18px;
+  .sbox { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; background: var(--field); border-radius: 26px; padding: 8px 16px 8px 18px;
           border: 2px solid transparent; transition: border-color .15s; cursor: text; min-height: 54px; }
   .sbox:focus-within { border-color: var(--pink); }
   .sbox > svg { color: var(--c2); flex: none; margin-right: 2px; }
@@ -66,18 +129,20 @@
   .sbox input::placeholder { color: var(--c3); }
   .sbox kbd { font: 700 .75rem Nunito, sans-serif; color: var(--c3); border: 1px solid var(--b5); border-radius: 5px; padding: 1px 7px; }
   .suggest { position: absolute; z-index: 10; left: 20px; right: 20px; top: calc(100% - 10px); margin: 0; padding: 6px; list-style: none;
-             background: var(--b3); border-radius: var(--radius); box-shadow: 0 10px 30px hsl(0 0% 0% / .5); max-height: 280px; overflow: auto; }
+             background: var(--b3); border-radius: var(--radius); box-shadow: var(--shadow-2); max-height: 280px; overflow: auto; }
   .suggest[hidden] { display: none; }
   .suggest li { display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; cursor: pointer; font-weight: 700; }
   .suggest li b { color: var(--pink); }
+  .token, .tag.on { color: #fff; }
+  :root[data-theme="dark"] .token, :root[data-theme="dark"] .tag.on { color: #2a1e24; }
   .suggest li small { color: var(--c3); font-weight: 700; }
   .suggest li.on, .suggest li:hover { background: var(--b4); }
   .cloud { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; }
   .cloud-lbl { display: inline-flex; align-items: center; gap: 5px; color: var(--c2); font-weight: 800; font-size: .82rem; margin-right: 4px; }
   .cloud-lbl svg { color: var(--pink); }
 
-  .tag { background: hsl(0 0% 100% / .08); border: 0; cursor: pointer; padding: 2px 10px; border-radius: 999px; font-weight: 700; font-size: .82rem; color: var(--c2); }
-  .tag:hover { background: hsl(0 0% 100% / .16); color: var(--c1); }
+  .tag { background: var(--overlay); border: 0; cursor: pointer; padding: 2px 10px; border-radius: 999px; font-weight: 700; font-size: .82rem; color: var(--c2); }
+  .tag:hover { background: var(--overlay-2); color: var(--c1); }
   .tag.on { background: var(--pink); color: #2a1e24; }
 
   /* sort bar */
@@ -94,15 +159,15 @@
   /* cards */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 540px), 1fr)); gap: 14px; padding: 20px 0 10px; }
   .card { position: relative; display: flex; min-height: 140px; border-radius: var(--radius); overflow: hidden; background: var(--b3);
-          box-shadow: 0 2px 10px hsl(0 0% 0% / .35); transition: transform .15s ease, box-shadow .15s ease; }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px hsl(0 0% 0% / .5); }
+          box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease; }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
   .thumb { position: relative; flex: none; width: 140px; background: var(--b4) center / cover; display: block; }
   .thumb::after { content: ""; position: absolute; inset: 0; background: hsl(0 0% 0% / .45); opacity: 0; transition: opacity .15s; }
   .thumb .pl { position: absolute; inset: 0; display: grid; place-items: center; z-index: 1; opacity: 0; transition: opacity .15s; color: #fff; }
   .card:hover .thumb::after, .card:hover .thumb .pl, .thumb:focus-visible .pl { opacity: 1; }
   .body { position: relative; flex: 1; min-width: 0; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
-  .body::before { content: ""; position: absolute; inset: 0; background: var(--cover) center / cover; opacity: .18; filter: blur(1px); }
-  .body::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--b3) 10%, hsl(var(--h) 10% 18% / .6)); }
+  .body::before { content: ""; position: absolute; inset: 0; background: var(--cover) center / cover; opacity: var(--cover-op); filter: blur(1px); }
+  .body::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--b3) 10%, var(--fade)); }
   .body > * { position: relative; z-index: 1; }
   .title { font-weight: 800; font-size: 1.15rem; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none; }
   .title:hover { text-decoration: underline; }
@@ -133,6 +198,8 @@
     .nav-links { gap: 14px; }
     .nav-links .lbl-long { display: none; }
     .brand-name { display: none; }
+    .about-in { grid-template-columns: 1fr; padding: 0 16px 18px; }
+    .about h2 { margin-top: 4px; }
     .thumb { width: 92px; }
     .sbox kbd { display: none; }
     .search, .sortbar { padding-left: 14px; padding-right: 14px; }
@@ -148,13 +215,18 @@
     <a class="brand" href="/"><img class="avatar" src="avatar.jpg" alt="" width="36" height="36"><span class="brand-name">darkpyxlz</span></a>
     <div class="nav-links">
       <a class="on" href="/">projects</a>
+      <a href="#about">about</a>
       <a href="https://www.youtube.com/@darkpyxlz">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg>
-        youtube</a>
+        <span class="lbl-long">youtube</span></a>
       <a href="https://github.com/darkpyxlz">
         <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        github</a>
+        <span class="lbl-long">github</span></a>
     </div>
+    <button class="theme" id="theme" type="button" aria-label="Switch to light mode" title="Toggle light / dark">
+      <svg class="sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -184,6 +256,26 @@
 
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty"><b>No projects found</b>No project has all of those tags. Try removing one.</div>
+
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="about-head" id="aboutHead"></div>
+    <div class="about-in">
+      <img class="about-av" src="avatar.jpg" alt="darkpyxlz's profile picture" width="112" height="112">
+      <div>
+        <h2 id="about-title">darkpyxlz</h2>
+        <div class="about-sub">games, science and physics, built for the browser</div>
+      </div>
+      <p>Hi, I'm darkpyxlz. I make things that run in the browser: idle games about organic chemistry and cell biology,
+        a strategy game set on the real night sky, a rhythm and aim trainer, and an interactive physics textbook that climbs
+        to olympiad level. I also build simulators and write-ups for physics tournaments like SYPT. Everything here is
+        free to play and the source is on GitHub.</p>
+      <div class="about-stats" id="aboutStats"></div>
+      <div class="about-links">
+        <a class="btn yt" href="https://www.youtube.com/@darkpyxlz"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg>YouTube</a>
+        <a class="btn" href="https://github.com/darkpyxlz"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -196,7 +288,7 @@
   <ul class="wrap">
     <li><a href="/SAO/">Firmament</a></li><li><a href="/chemcorp/">ChemCorp</a></li><li><a href="/biohub/">Cytos</a></li>
     <li><a href="/physbook/">Physbook</a></li><li><a href="/sypt/">SYPT B8 Cold drink</a></li><li><a href="/aimtrain/">Aimtrain</a></li>
-    <li><a href="/TooManyUpgrades/">Too Many Upgrades</a></li><li><a href="/florr/">florr horizons</a></li>
+    <li><a href="/TooManyUpgrades/">Too Many Upgrades</a></li>
   </ul>
 </noscript>
 
@@ -229,9 +321,6 @@ const PROJECTS = [
   { id: 'toomanyupgrades', title: 'Too Many Upgrades', subtitle: 'resource management game', status: 'live', updated: '2025-12-15',
     href: '/TooManyUpgrades/', repo: 'TooManyUpgrades', cta: 'Play',
     tags: ['game', 'idle', 'incremental', 'resource-management', 'upgrades', 'tech-tree'] },
-  { id: 'florr', title: 'florr horizons', subtitle: 'incremental florr game', status: 'wip', updated: '2026-07-23',
-    href: '/florr/', repo: 'florr', cta: 'Open', cover: 'linear-gradient(135deg, #3b8f4e, #1f4f6b)',
-    tags: ['game', 'idle', 'incremental', 'florr', 'wip'] },
 ];
 PROJECTS.forEach(p => { if (p.status === 'live' && !p.tags.includes('live')) p.tags.push('live'); });
 
@@ -362,7 +451,7 @@ function syncUrl() {
   if (state.tags.length) params.set('tags', state.tags.join(','));
   if (state.sort !== 'updated' || state.dir !== -1) params.set('sort', state.sort + (state.dir === 1 ? '_asc' : '_desc'));
   const s = params.toString().replace(/%2C/g, ',');
-  history.replaceState(null, '', s ? '?' + s : location.pathname);
+  history.replaceState(null, '', (s ? '?' + s : location.pathname) + location.hash);
 }
 
 function setSort(sort, dir) {
@@ -405,6 +494,29 @@ document.addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
 });
 
+// light / dark toggle
+const themeBtn = $('theme');
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
+applyTheme(document.documentElement.dataset.theme);
+themeBtn.addEventListener('click', () => {
+  const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(t);
+  try { localStorage.setItem('theme', t); } catch (e) {}
+});
+
+// about: counts and banner
+const subjects = new Set(PROJECTS.flatMap(p => p.tags).filter(t => ['physics', 'chemistry', 'biology', 'astronomy'].includes(t)));
+$('aboutStats').innerHTML = [
+  [PROJECTS.length, 'projects'],
+  [PROJECTS.filter(p => p.tags.includes('game')).length, 'games'],
+  [subjects.size, 'sciences covered'],
+  [PROJECTS.reduce((n, p) => n + (p.docs || []).length, 0), 'write-ups'],
+].map(([n, l]) => `<div><b>${n}</b>${l}</div>`).join('');
+$('aboutHead').style.setProperty('--bg', 'url(covers/sao.jpg)');
+
 // restore from URL
 const params = new URLSearchParams(location.search);
 const known = new Set(TAGS.map(t => t.tag));
@@ -412,6 +524,7 @@ state.tags = (params.get('tags') || '').split(',').map(t => t.trim().toLowerCase
 const sp = (params.get('sort') || '').match(/^(title|updated|random)_(asc|desc)$/);
 setSort(sp ? sp[1] : 'updated', sp ? (sp[2] === 'asc' ? 1 : -1) : -1);
 render();
+if (location.hash === '#about') $('about').scrollIntoView();
 </script>
 </body>
 </html>
