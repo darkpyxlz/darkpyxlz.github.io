@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>darkpyxlz</title>
-<meta name="description" content="Projects by darkpyxlz: Firmament (SAO), ChemCorp and SYPT 2027.">
+<meta name="description" content="Projects by darkpyxlz: Firmament (SAO), ChemCorp, SYPT 2027 and Physbook.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
   :root {
     --bg: #F4F5F7; --card: #FFFFFF; --ink: #111827; --muted: #5B6472; --line: #E3E6EB;
-    --a1: #4F46E5; --a2: #0F766E; --a3: #C2410C; --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px rgba(16,24,40,.06);
+    --a1: #4F46E5; --a2: #0F766E; --a3: #C2410C; --a4: #2350C8; --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px rgba(16,24,40,.06);
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #0D1117; --card: #161B22; --ink: #E6EDF3; --muted: #9AA4B2; --line: #2A313C;
-            --a1: #8B87FF; --a2: #2DD4BF; --a3: #FB923C; --shadow: none; }
+            --a1: #8B87FF; --a2: #2DD4BF; --a3: #FB923C; --a4: #7C9CFF; --shadow: none; }
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -42,7 +42,7 @@
   li a span { color: var(--muted); font-size: .85rem; }
   footer { margin-top: 48px; color: var(--muted); font-size: .9rem; }
   footer a { color: var(--muted); }
-  .sao { --accent: var(--a1); } .chem { --accent: var(--a2); } .sypt { --accent: var(--a3); }
+  .sao { --accent: var(--a1); } .chem { --accent: var(--a2); } .sypt { --accent: var(--a3); } .physbook { --accent: var(--a4); }
 </style>
 </head>
 <body>
@@ -81,6 +81,15 @@
         <li><a href="/sypt/b8-cold-drink/B8-model-derivation.pdf">Model derivation <span>PDF</span></a></li>
         <li><a href="/sypt/b8-cold-drink/sypt_salt_ice_model.pdf">Salt–ice model <span>PDF</span></a></li>
         <li><a href="https://github.com/darkpyxlz/sypt">Source <span>GitHub</span></a></li>
+      </ul>
+    </section>
+    <section class="card physbook">
+      <p class="tag">Interactive textbook</p>
+      <h2>Physbook</h2>
+      <p>Physics from units to nuclear physics in 21 chapters, with 25 labs and 231 scored problems that climb to olympiad level.</p>
+      <a class="play" href="/physbook/">Start learning</a>
+      <ul>
+        <li><a href="https://github.com/darkpyxlz/physbook">Source <span>GitHub</span></a></li>
       </ul>
     </section>
   </div>
