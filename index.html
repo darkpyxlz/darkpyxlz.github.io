@@ -6,6 +6,8 @@
 <title>darkpyxlz · projects</title>
 <meta name="description" content="Every darkpyxlz project in one place: Firmament, ChemCorp, Cytos, Physbook, the SYPT B8 simulator, Aimtrain, Too Many Upgrades and florr horizons.">
 <meta name="color-scheme" content="dark">
+<link rel="icon" href="avatar.jpg">
+<link rel="apple-touch-icon" href="avatar.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
@@ -23,7 +25,6 @@
     --pink: #ff66ab;
     --blue: #66ccff;
     --lime: #b3ff66;
-    --amber: #ffd966;
     --orange: #ff9966;
     --radius: 10px;
     color-scheme: dark;
@@ -34,49 +35,50 @@
   a { color: inherit; }
   button { font: inherit; color: inherit; }
   svg { display: block; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
   /* top bar */
   .nav { position: sticky; top: 0; z-index: 20; background: hsl(var(--h) 10% 12% / .92); backdrop-filter: blur(8px);
          border-bottom: 1px solid var(--b3); }
   .nav-in { max-width: 1240px; margin: 0 auto; padding: 0 16px; height: 56px; display: flex; align-items: center; gap: 22px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-size: 1.15rem; letter-spacing: .01em; }
-  .mono { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font-weight: 900; font-size: .9rem;
-          background: linear-gradient(135deg, var(--pink), #a855f7); color: #fff; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; image-rendering: pixelated; box-shadow: 0 0 0 2px var(--pink); background: var(--b4); }
   .nav-links { display: flex; gap: 18px; font-weight: 700; color: var(--c2); }
-  .nav-links a { text-decoration: none; padding: 17px 0 15px; border-bottom: 2px solid transparent; }
+  .nav-links a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; padding: 17px 0 15px; border-bottom: 2px solid transparent; }
   .nav-links a:hover { color: var(--c1); }
   .nav-links a.on { color: var(--c1); border-color: var(--pink); }
-  .nav-gh { margin-left: auto; color: var(--c2); }
-  .nav-gh:hover { color: var(--c1); }
 
-  /* page header strip */
+  /* search */
   .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
-  .strip { margin-top: 20px; border-radius: var(--radius) var(--radius) 0 0; padding: 14px 20px;
-           background: linear-gradient(90deg, hsl(var(--h) 40% 26%), hsl(280 30% 22%)); display: flex; align-items: center; gap: 12px; }
-  .strip svg { color: var(--pink); }
-  .strip h1 { margin: 0; font-size: 1.25rem; font-weight: 800; }
-  .strip h1 span { color: var(--c2); font-weight: 600; }
-
-  /* search panel */
-  .search { position: relative; overflow: hidden; background: var(--b2); padding: 22px 20px 16px; }
-  .search-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: blur(14px) brightness(.35) saturate(1.2);
-               transform: scale(1.05); transition: background-image .4s; }
+  .search { position: relative; margin-top: 20px; border-radius: var(--radius) var(--radius) 0 0; background: var(--b2); padding: 22px 20px 16px; }
+  .search-bg { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+  .search-bg::before { content: ""; position: absolute; inset: -20px; background: var(--bg) center / cover; filter: blur(14px) brightness(.35) saturate(1.2); }
   .search > :not(.search-bg) { position: relative; }
-  .sbox { display: flex; align-items: center; gap: 10px; background: hsl(var(--h) 10% 8% / .75); border-radius: 999px; padding: 0 20px;
-          border: 2px solid transparent; transition: border-color .15s; }
+  .sbox { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; background: hsl(var(--h) 10% 8% / .78); border-radius: 26px; padding: 8px 16px 8px 18px;
+          border: 2px solid transparent; transition: border-color .15s; cursor: text; min-height: 54px; }
   .sbox:focus-within { border-color: var(--pink); }
-  .sbox input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; color: var(--c1); font: 600 1.15rem Nunito, sans-serif; padding: 13px 0; }
+  .sbox > svg { color: var(--c2); flex: none; margin-right: 2px; }
+  .token { display: inline-flex; align-items: center; gap: 4px; background: var(--pink); color: #2a1e24; font-weight: 800; font-size: .9rem;
+           border: 0; border-radius: 999px; padding: 3px 6px 3px 11px; cursor: pointer; }
+  .token span { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: hsl(0 0% 0% / .18); font-size: .8rem; line-height: 1; }
+  .token:hover span { background: hsl(0 0% 0% / .32); }
+  .sbox input { flex: 1; min-width: 140px; background: none; border: 0; outline: 0; color: var(--c1); font: 600 1.1rem Nunito, sans-serif; padding: 6px 0; }
   .sbox input::placeholder { color: var(--c3); }
   .sbox kbd { font: 700 .75rem Nunito, sans-serif; color: var(--c3); border: 1px solid var(--b5); border-radius: 5px; padding: 1px 7px; }
-  .sbox svg { color: var(--c2); flex: none; }
-  .filters { margin-top: 14px; display: grid; gap: 6px; }
-  .frow { display: grid; grid-template-columns: 90px 1fr; align-items: baseline; gap: 10px; }
-  .frow > span { color: var(--c2); font-weight: 700; font-size: .85rem; }
-  .opts { display: flex; flex-wrap: wrap; gap: 2px 4px; }
-  .opt { background: none; border: 0; cursor: pointer; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: .9rem; color: var(--c1); opacity: .75; }
-  .opt:hover { opacity: 1; background: hsl(0 0% 100% / .06); }
-  .opt.on { opacity: 1; color: var(--pink); }
-  .opt:focus-visible, .sort:focus-visible, .act:focus-visible, .card:focus-within { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .suggest { position: absolute; z-index: 10; left: 20px; right: 20px; top: calc(100% - 10px); margin: 0; padding: 6px; list-style: none;
+             background: var(--b3); border-radius: var(--radius); box-shadow: 0 10px 30px hsl(0 0% 0% / .5); max-height: 280px; overflow: auto; }
+  .suggest[hidden] { display: none; }
+  .suggest li { display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; cursor: pointer; font-weight: 700; }
+  .suggest li b { color: var(--pink); }
+  .suggest li small { color: var(--c3); font-weight: 700; }
+  .suggest li.on, .suggest li:hover { background: var(--b4); }
+  .cloud { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; }
+  .cloud-lbl { display: inline-flex; align-items: center; gap: 5px; color: var(--c2); font-weight: 800; font-size: .82rem; margin-right: 4px; }
+  .cloud-lbl svg { color: var(--pink); }
+
+  .tag { background: hsl(0 0% 100% / .08); border: 0; cursor: pointer; padding: 2px 10px; border-radius: 999px; font-weight: 700; font-size: .82rem; color: var(--c2); }
+  .tag:hover { background: hsl(0 0% 100% / .16); color: var(--c1); }
+  .tag.on { background: var(--pink); color: #2a1e24; }
 
   /* sort bar */
   .sortbar { background: var(--b3); padding: 10px 20px; display: flex; align-items: center; gap: 4px 6px; flex-wrap: wrap;
@@ -91,31 +93,30 @@
 
   /* cards */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 540px), 1fr)); gap: 14px; padding: 20px 0 10px; }
-  .card { position: relative; display: flex; height: 130px; border-radius: var(--radius); overflow: hidden; background: var(--b3);
+  .card { position: relative; display: flex; min-height: 140px; border-radius: var(--radius); overflow: hidden; background: var(--b3);
           box-shadow: 0 2px 10px hsl(0 0% 0% / .35); transition: transform .15s ease, box-shadow .15s ease; }
   .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px hsl(0 0% 0% / .5); }
-  .thumb { position: relative; flex: none; width: 130px; background: var(--b4) center / cover; display: block; }
+  .thumb { position: relative; flex: none; width: 140px; background: var(--b4) center / cover; display: block; }
   .thumb::after { content: ""; position: absolute; inset: 0; background: hsl(0 0% 0% / .45); opacity: 0; transition: opacity .15s; }
   .thumb .pl { position: absolute; inset: 0; display: grid; place-items: center; z-index: 1; opacity: 0; transition: opacity .15s; color: #fff; }
   .card:hover .thumb::after, .card:hover .thumb .pl, .thumb:focus-visible .pl { opacity: 1; }
-  .body { position: relative; flex: 1; min-width: 0; padding: 10px 14px; display: flex; flex-direction: column; overflow: hidden; }
+  .body { position: relative; flex: 1; min-width: 0; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
   .body::before { content: ""; position: absolute; inset: 0; background: var(--cover) center / cover; opacity: .18; filter: blur(1px); }
   .body::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--b3) 10%, hsl(var(--h) 10% 18% / .6)); }
   .body > * { position: relative; z-index: 1; }
   .title { font-weight: 800; font-size: 1.15rem; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none; }
   .title:hover { text-decoration: underline; }
   .artist { font-weight: 700; color: var(--c2); font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .desc { color: var(--c3); font-size: .82rem; margin: 2px 0 0; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 5px 0 8px; }
+  .tags .tag { font-size: .72rem; padding: 1px 8px; }
+  .docs { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: -2px 0 8px; font-size: .78rem; font-weight: 700; }
+  .docs a { display: inline-flex; align-items: center; gap: 3px; color: var(--blue); text-decoration: none; }
+  .docs a:hover { text-decoration: underline; }
   .meta { margin-top: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: .78rem; color: var(--c2); font-weight: 700; }
   .stat { display: inline-flex; align-items: center; gap: 4px; }
   .status { font-weight: 900; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; padding: 1px 8px; border-radius: 999px; color: #2a1e24; }
   .status.live { background: var(--lime); }
   .status.wip { background: var(--orange); }
-  .dots { display: inline-flex; gap: 3px; }
-  .dot { width: 9px; height: 16px; border-radius: 999px; }
-  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
-  .chip { font-size: .72rem; font-weight: 800; text-decoration: none; padding: 1px 8px; border-radius: 999px; background: hsl(0 0% 100% / .08); color: var(--c2); }
-  .chip:hover { background: hsl(0 0% 100% / .16); color: var(--c1); }
   .side { flex: none; width: 0; display: flex; flex-direction: column; background: var(--b4); transition: width .15s ease; overflow: hidden; }
   .card:hover .side, .card:focus-within .side { width: 44px; }
   .act { flex: 1; display: grid; place-items: center; color: var(--c2); text-decoration: none; }
@@ -128,14 +129,14 @@
   footer a:hover { color: var(--pink); }
 
   @media (max-width: 620px) {
-    .nav-links { display: none; }
-    .frow { grid-template-columns: 1fr; gap: 2px; }
-    .card { height: 118px; }
+    .nav-in { gap: 14px; }
+    .nav-links { gap: 14px; }
+    .nav-links .lbl-long { display: none; }
+    .brand-name { display: none; }
     .thumb { width: 92px; }
     .sbox kbd { display: none; }
-    .desc { display: none; }
-    .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-    .search, .sortbar, .strip { padding-left: 14px; padding-right: 14px; }
+    .search, .sortbar { padding-left: 14px; padding-right: 14px; }
+    .suggest { left: 14px; right: 14px; }
   }
   @media (hover: none) { .side { width: 44px; } }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -144,44 +145,32 @@
 <body>
 <nav class="nav">
   <div class="nav-in">
-    <a class="brand" href="/"><span class="mono">dp</span>darkpyxlz</a>
+    <a class="brand" href="/"><img class="avatar" src="avatar.jpg" alt="" width="36" height="36"><span class="brand-name">darkpyxlz</span></a>
     <div class="nav-links">
       <a class="on" href="/">projects</a>
-      <a href="#" data-quick="type:game">games</a>
-      <a href="#" data-quick="subject:physics">physics</a>
+      <a href="https://www.youtube.com/@darkpyxlz">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg>
+        youtube</a>
+      <a href="https://github.com/darkpyxlz">
+        <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        github</a>
     </div>
-    <a class="nav-gh" href="https://github.com/darkpyxlz" aria-label="darkpyxlz on GitHub">
-      <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-    </a>
   </div>
 </nav>
 
 <main class="wrap">
-  <div class="strip">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-    <h1>projects <span>listing</span></h1>
-  </div>
-
-  <section class="search" aria-label="Search and filter">
+  <section class="search" aria-label="Search projects by tag">
     <div class="search-bg" id="searchBg"></div>
-    <label class="sbox">
-      <input id="q" type="search" placeholder="type in keywords..." autocomplete="off" aria-label="Search projects">
-      <kbd>/</kbd>
+    <div class="sbox" id="sbox">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-    </label>
-    <div class="filters">
-      <div class="frow"><span>Type</span><div class="opts" data-filter="type">
-        <button class="opt on" data-v="">Any</button><button class="opt" data-v="game">Game</button><button class="opt" data-v="simulator">Simulator</button><button class="opt" data-v="textbook">Textbook</button><button class="opt" data-v="trainer">Trainer</button>
-      </div></div>
-      <div class="frow"><span>Genre</span><div class="opts" data-filter="genre">
-        <button class="opt on" data-v="">Any</button><button class="opt" data-v="idle">Idle</button><button class="opt" data-v="strategy">Strategy</button><button class="opt" data-v="rhythm">Rhythm</button><button class="opt" data-v="learning">Learning</button>
-      </div></div>
-      <div class="frow"><span>Subject</span><div class="opts" data-filter="subject">
-        <button class="opt on" data-v="">Any</button><button class="opt" data-v="physics">Physics</button><button class="opt" data-v="chemistry">Chemistry</button><button class="opt" data-v="biology">Biology</button><button class="opt" data-v="astronomy">Astronomy</button>
-      </div></div>
-      <div class="frow"><span>Status</span><div class="opts" data-filter="status">
-        <button class="opt on" data-v="">Any</button><button class="opt" data-v="live">Live</button><button class="opt" data-v="wip">In development</button>
-      </div></div>
+      <span id="tokens" style="display:contents"></span>
+      <input id="q" type="text" placeholder="search tags..." autocomplete="off" spellcheck="false"
+             role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggest" aria-label="Search projects by tag">
+      <kbd>/</kbd>
+    </div>
+    <ul class="suggest" id="suggest" role="listbox" hidden></ul>
+    <div class="cloud" id="cloud">
+      <span class="cloud-lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4zM19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg>AI tags</span>
     </div>
   </section>
 
@@ -189,22 +178,21 @@
     <span class="lbl">Sort by</span>
     <button class="sort" data-sort="title">Title <span class="ar">▼</span></button>
     <button class="sort on" data-sort="updated">Updated <span class="ar">▼</span></button>
-    <button class="sort" data-sort="type">Type <span class="ar">▼</span></button>
     <button class="sort" data-sort="random">Random <span class="ar">▼</span></button>
     <span class="count" id="count"></span>
   </div>
 
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty"><b>No projects found</b>Try a different keyword or clear a filter.</div>
+  <div class="empty" id="empty"><b>No projects found</b>No project has all of those tags. Try removing one.</div>
 </main>
 
 <footer>
   <span>darkpyxlz</span>
-  <a href="https://github.com/darkpyxlz">github.com/darkpyxlz</a>
+  <a href="https://www.youtube.com/@darkpyxlz">youtube</a>
+  <a href="https://github.com/darkpyxlz">github</a>
 </footer>
 
 <noscript>
-  <style>.sortbar, .filters, .sbox { display: none; }</style>
   <ul class="wrap">
     <li><a href="/SAO/">Firmament</a></li><li><a href="/chemcorp/">ChemCorp</a></li><li><a href="/biohub/">Cytos</a></li>
     <li><a href="/physbook/">Physbook</a></li><li><a href="/sypt/">SYPT B8 Cold drink</a></li><li><a href="/aimtrain/">Aimtrain</a></li>
@@ -213,47 +201,53 @@
 </noscript>
 
 <script>
-const SUBJECT_COLOURS = { physics: '#66ccff', chemistry: '#b3ff66', biology: '#ff66ab', astronomy: '#a78bfa', rhythm: '#ffd966', economy: '#ff9966' };
-
 const PROJECTS = [
-  { id: 'sao', title: 'Firmament', subtitle: 'space corporation on the real night sky', type: 'game', genre: ['strategy'], subject: ['astronomy'],
-    status: 'live', updated: '2026-10-26', href: '/SAO/', repo: 'SAO', cta: 'Play',
-    desc: 'Found a space company on one star and colonise all 88 constellations; research real technology and catalogue the Messier objects.' },
-  { id: 'chemcorp', title: 'ChemCorp', subtitle: 'organic chemistry idle lab', type: 'game', genre: ['idle', 'learning'], subject: ['chemistry'],
-    status: 'live', updated: '2026-10-30', href: '/chemcorp/', repo: 'chemcorp', cta: 'Play',
-    desc: 'Run real reactions, research 111 of them, learn in the Academy and automate a plant.' },
-  { id: 'biohub', title: 'Cytos', subtitle: 'cell biology idle game', type: 'game', genre: ['idle', 'learning'], subject: ['biology'],
-    status: 'live', updated: '2026-11-01', href: '/biohub/', repo: 'biohub', cta: 'Play',
-    desc: 'Express genes, build organelles, run the electron transport chain, fight viruses, replicate and evolve.' },
-  { id: 'physbook', title: 'Physbook', subtitle: 'interactive physics textbook', type: 'textbook', genre: ['learning'], subject: ['physics'],
-    status: 'live', updated: '2026-11-21', href: '/physbook/', repo: 'physbook', cta: 'Start learning',
-    desc: '21 chapters from units to nuclear physics, 25 labs and 231 scored problems that climb to olympiad level.' },
-  { id: 'sypt', title: 'Cold drink', subtitle: 'SYPT 2027 · problem B8', type: 'simulator', genre: ['learning'], subject: ['physics'],
-    status: 'live', updated: '2026-10-30', href: '/sypt/', repo: 'sypt', cta: 'Open simulator',
-    desc: 'How fast a can cools in ice, water and salt: a browser simulator and the write-ups behind it.',
-    extra: [
+  { id: 'sao', title: 'Firmament', subtitle: 'space corporation on the real night sky', status: 'live', updated: '2026-10-26',
+    href: '/SAO/', repo: 'SAO', cta: 'Play',
+    tags: ['game', 'strategy', 'space', 'astronomy', 'constellations', 'management', 'science'] },
+  { id: 'chemcorp', title: 'ChemCorp', subtitle: 'organic chemistry idle lab', status: 'live', updated: '2026-10-30',
+    href: '/chemcorp/', repo: 'chemcorp', cta: 'Play',
+    tags: ['game', 'idle', 'incremental', 'chemistry', 'educational', 'automation', 'science'] },
+  { id: 'biohub', title: 'Cytos', subtitle: 'cell biology idle game', status: 'live', updated: '2026-11-01',
+    href: '/biohub/', repo: 'biohub', cta: 'Play',
+    tags: ['game', 'idle', 'incremental', 'biology', 'cells', 'genetics', 'educational', 'science'] },
+  { id: 'physbook', title: 'Physbook', subtitle: 'interactive physics textbook', status: 'live', updated: '2026-11-21',
+    href: '/physbook/', repo: 'physbook', cta: 'Start learning',
+    tags: ['textbook', 'physics', 'educational', 'olympiad', 'problems', 'labs', 'science'] },
+  { id: 'sypt', title: 'Cold drink', subtitle: 'SYPT 2027 · problem B8 simulator', status: 'live', updated: '2026-10-30',
+    href: '/sypt/', repo: 'sypt', cta: 'Open simulator',
+    tags: ['simulator', 'physics', 'thermodynamics', 'sypt', 'research', 'pdf', 'science'],
+    docs: [
       ['Strong case', '/sypt/b8-cold-drink/B8_strong_case.pdf'],
       ['Report', '/sypt/b8-cold-drink/B8-salted-ice-bath.pdf'],
       ['Derivation', '/sypt/b8-cold-drink/B8-model-derivation.pdf'],
       ['Salt–ice model', '/sypt/b8-cold-drink/sypt_salt_ice_model.pdf'],
     ] },
-  { id: 'aimtrain', title: 'Aimtrain', subtitle: 'aim, mania, taiko and orbit trainer', type: 'trainer', genre: ['rhythm'], subject: ['rhythm'],
-    status: 'live', updated: '2026-11-21', href: '/aimtrain/', repo: 'aimtrain', cta: 'Play',
-    desc: 'Rhythm-game drills in four modes with adaptive difficulty, synced music and saved records.' },
-  { id: 'toomanyupgrades', title: 'Too Many Upgrades', subtitle: 'resource management game', type: 'game', genre: ['idle'], subject: ['economy'],
-    status: 'live', updated: '2025-12-15', href: '/TooManyUpgrades/', repo: 'TooManyUpgrades', cta: 'Play',
-    desc: 'Gather wood, stone and iron, build producers and climb the technology tree.' },
-  { id: 'florr', title: 'florr horizons', subtitle: 'incremental florr game', type: 'game', genre: ['idle'], subject: [],
-    status: 'wip', updated: '2026-07-23', href: '/florr/', repo: 'florr', cta: 'Open',
-    desc: 'An incremental game in early development.', cover: 'linear-gradient(135deg, #3b8f4e, #1f4f6b)' },
+  { id: 'aimtrain', title: 'Aimtrain', subtitle: 'aim, mania, taiko and orbit trainer', status: 'live', updated: '2026-11-21',
+    href: '/aimtrain/', repo: 'aimtrain', cta: 'Play',
+    tags: ['game', 'rhythm', 'aim-trainer', 'mania', 'taiko', 'music', 'reflex'] },
+  { id: 'toomanyupgrades', title: 'Too Many Upgrades', subtitle: 'resource management game', status: 'live', updated: '2025-12-15',
+    href: '/TooManyUpgrades/', repo: 'TooManyUpgrades', cta: 'Play',
+    tags: ['game', 'idle', 'incremental', 'resource-management', 'upgrades', 'tech-tree'] },
+  { id: 'florr', title: 'florr horizons', subtitle: 'incremental florr game', status: 'wip', updated: '2026-07-23',
+    href: '/florr/', repo: 'florr', cta: 'Open', cover: 'linear-gradient(135deg, #3b8f4e, #1f4f6b)',
+    tags: ['game', 'idle', 'incremental', 'florr', 'wip'] },
 ];
+PROJECTS.forEach(p => { if (p.status === 'live' && !p.tags.includes('live')) p.tags.push('live'); });
+
+// every tag with how many projects use it, most used first
+const TAGS = (() => {
+  const n = {};
+  PROJECTS.forEach(p => p.tags.forEach(t => n[t] = (n[t] || 0) + 1));
+  return Object.entries(n).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([tag, count]) => ({ tag, count }));
+})();
 
 const ICON = {
   play: '<svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
   playSm: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
   code: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>',
   clock: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-  doc: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>',
+  doc: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>',
 };
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -268,24 +262,29 @@ function ago(iso) {
   return years + (years === 1 ? ' year' : ' years') + ' ago';
 }
 
-function coverOf(p) { return p.cover || `url(covers/${p.id}.jpg)`; }
+const coverOf = p => p.cover || `url(covers/${p.id}.jpg)`;
+
+const state = { tags: [], text: '', sort: 'updated', dir: -1, seed: Math.random(), active: 0 };
+const $ = id => document.getElementById(id);
+const q = $('q'), suggest = $('suggest');
+
+function tagBtn(t, extraClass = '') {
+  const on = state.tags.includes(t);
+  return `<button class="tag${on ? ' on' : ''}${extraClass}" data-tag="${esc(t)}" aria-pressed="${on}">${esc(t)}</button>`;
+}
 
 function card(p) {
   const cover = coverOf(p);
-  const subjects = p.subject.length ? p.subject : ['none'];
-  const dots = subjects.map(s => `<span class="dot" style="background:${SUBJECT_COLOURS[s] || 'var(--c3)'}" title="${esc(s)}"></span>`).join('');
-  const extra = (p.extra || []).map(([label, url]) => `<a class="chip" href="${esc(url)}">${ICON.doc.replace('aria-hidden', 'style="display:inline;vertical-align:-1px" aria-hidden')} ${esc(label)}</a>`).join('');
+  const docs = (p.docs || []).map(([label, url]) => `<a href="${esc(url)}">${ICON.doc}${esc(label)}</a>`).join('');
   return `<article class="card" style="--cover:${cover}">
     <a class="thumb" href="${esc(p.href)}" style="background-image:${cover}" aria-label="${esc(p.cta)}: ${esc(p.title)}"><span class="pl">${ICON.play}</span></a>
     <div class="body">
       <a class="title" href="${esc(p.href)}">${esc(p.title)}</a>
       <div class="artist">${esc(p.subtitle)}</div>
-      <p class="desc">${esc(p.desc)}</p>
-      ${extra ? `<div class="chips">${extra}</div>` : ''}
+      <div class="tags">${p.tags.filter(t => t !== 'live' && t !== 'wip').map(t => tagBtn(t)).join('')}</div>
+      ${docs ? `<div class="docs">${docs}</div>` : ''}
       <div class="meta">
-        <span class="status ${p.status}">${p.status === 'live' ? 'live' : 'wip'}</span>
-        <span class="dots">${dots}</span>
-        <span class="stat">${esc(p.type)}</span>
+        <span class="status ${p.status}">${p.status}</span>
         <span class="stat" title="Last updated ${esc(p.updated)}">${ICON.clock}${ago(p.updated)}</span>
       </div>
     </div>
@@ -296,103 +295,121 @@ function card(p) {
   </article>`;
 }
 
-const state = { q: '', type: '', genre: '', subject: '', status: '', sort: 'updated', dir: -1, seed: Math.random() };
-const grid = document.getElementById('grid');
-const q = document.getElementById('q');
-
-function haystack(p) {
-  return [p.title, p.subtitle, p.desc, p.type, p.repo, ...p.genre, ...p.subject, p.status, ...(p.extra || []).map(e => e[0] + ' pdf')].join(' ').toLowerCase();
+// a project matches when it has every chosen tag, and some tag starting with / containing the half-typed text
+function matches(p) {
+  if (!state.tags.every(t => p.tags.includes(t))) return false;
+  const text = state.text.toLowerCase();
+  return !text || p.tags.some(t => t.includes(text));
 }
 
 function render() {
-  const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
-  let list = PROJECTS.filter(p =>
-    (!state.type || p.type === state.type) &&
-    (!state.genre || p.genre.includes(state.genre)) &&
-    (!state.subject || p.subject.includes(state.subject)) &&
-    (!state.status || p.status === state.status) &&
-    terms.every(t => haystack(p).includes(t)));
-  const key = { title: p => p.title.toLowerCase(), updated: p => p.updated, type: p => p.type + p.title.toLowerCase(),
-                random: p => Math.sin(state.seed * 1e4 + p.id.length * 97 + p.id.charCodeAt(0) * 13) };
-  const k = key[state.sort];
-  list.sort((a, b) => (k(a) > k(b) ? 1 : k(a) < k(b) ? -1 : 0) * state.dir);
-  grid.innerHTML = list.map(card).join('');
-  document.getElementById('empty').style.display = list.length ? 'none' : 'block';
-  document.getElementById('count').textContent = list.length + (list.length === 1 ? ' project' : ' projects');
+  const list = PROJECTS.filter(matches);
+  const key = { title: p => p.title.toLowerCase(), updated: p => p.updated,
+                random: p => Math.sin(state.seed * 1e4 + p.id.length * 97 + p.id.charCodeAt(0) * 13) }[state.sort];
+  list.sort((a, b) => (key(a) > key(b) ? 1 : key(a) < key(b) ? -1 : 0) * state.dir);
+  $('grid').innerHTML = list.map(card).join('');
+  $('empty').style.display = list.length ? 'none' : 'block';
+  $('count').textContent = list.length + (list.length === 1 ? ' project' : ' projects');
+  $('tokens').innerHTML = state.tags.map(t => `<button class="token" data-remove="${esc(t)}" aria-label="Remove tag ${esc(t)}">${esc(t)}<span aria-hidden="true">×</span></button>`).join('');
+  q.placeholder = state.tags.length ? 'add another tag...' : 'search tags...';
+  const lbl = $('cloud').firstElementChild;
+  $('cloud').innerHTML = '';
+  $('cloud').append(lbl);
+  const shown = TAGS.slice(0, 12).map(t => t.tag);
+  state.tags.forEach(t => { if (!shown.includes(t)) shown.push(t); });
+  $('cloud').insertAdjacentHTML('beforeend', shown.map(t => tagBtn(t)).join(''));
   const first = list.find(p => !p.cover) || PROJECTS[0];
-  document.getElementById('searchBg').style.backgroundImage = coverOf(first);
+  $('searchBg').style.setProperty('--bg', coverOf(first));
   syncUrl();
+}
+
+function suggestions() {
+  const text = state.text.toLowerCase();
+  if (!text) return [];
+  return TAGS.filter(({ tag }) => !state.tags.includes(tag) && tag.includes(text))
+             .sort((a, b) => (b.tag.startsWith(text) - a.tag.startsWith(text)) || b.count - a.count)
+             .slice(0, 8);
+}
+
+function renderSuggest() {
+  const s = suggestions();
+  state.active = Math.min(state.active, Math.max(0, s.length - 1));
+  suggest.hidden = !s.length;
+  q.setAttribute('aria-expanded', s.length > 0);
+  const text = state.text.toLowerCase();
+  suggest.innerHTML = s.map(({ tag, count }, i) => {
+    const at = tag.indexOf(text);
+    const label = esc(tag.slice(0, at)) + '<b>' + esc(tag.slice(at, at + text.length)) + '</b>' + esc(tag.slice(at + text.length));
+    return `<li role="option" id="opt${i}" data-tag="${esc(tag)}" class="${i === state.active ? 'on' : ''}" aria-selected="${i === state.active}">
+      <span>${label}</span><small>${count}</small></li>`;
+  }).join('');
+  if (s.length) q.setAttribute('aria-activedescendant', 'opt' + state.active); else q.removeAttribute('aria-activedescendant');
+}
+
+function addTag(t) {
+  if (t && !state.tags.includes(t)) state.tags.push(t);
+  q.value = state.text = '';
+  state.active = 0;
+  renderSuggest(); render();
+}
+function toggleTag(t) {
+  if (state.tags.includes(t)) state.tags = state.tags.filter(x => x !== t); else state.tags.push(t);
+  render();
 }
 
 function syncUrl() {
   const params = new URLSearchParams();
-  for (const k of ['q', 'type', 'genre', 'subject', 'status']) if (state[k]) params.set(k, state[k]);
+  if (state.tags.length) params.set('tags', state.tags.join(','));
   if (state.sort !== 'updated' || state.dir !== -1) params.set('sort', state.sort + (state.dir === 1 ? '_asc' : '_desc'));
-  const s = params.toString();
+  const s = params.toString().replace(/%2C/g, ',');
   history.replaceState(null, '', s ? '?' + s : location.pathname);
-}
-
-function setOpt(filter, value) {
-  state[filter] = value;
-  document.querySelectorAll(`[data-filter="${filter}"] .opt`).forEach(b => {
-    b.classList.toggle('on', b.dataset.v === value);
-    b.setAttribute('aria-pressed', b.dataset.v === value);
-  });
 }
 
 function setSort(sort, dir) {
   state.sort = sort; state.dir = dir;
   document.querySelectorAll('.sort').forEach(b => {
-    const on = b.dataset.sort === sort;
-    b.classList.toggle('on', on);
+    b.classList.toggle('on', b.dataset.sort === sort);
     b.querySelector('.ar').textContent = dir === 1 ? '▲' : '▼';
   });
 }
 
-document.querySelectorAll('[data-filter]').forEach(group => {
-  group.addEventListener('click', e => {
-    const b = e.target.closest('.opt'); if (!b) return;
-    const f = group.dataset.filter;
-    setOpt(f, state[f] === b.dataset.v ? '' : b.dataset.v);
-    render();
-  });
+q.addEventListener('input', () => { state.text = q.value.trim(); state.active = 0; renderSuggest(); render(); });
+q.addEventListener('keydown', e => {
+  const s = suggestions();
+  if (e.key === 'ArrowDown' && s.length) { e.preventDefault(); state.active = (state.active + 1) % s.length; renderSuggest(); }
+  else if (e.key === 'ArrowUp' && s.length) { e.preventDefault(); state.active = (state.active - 1 + s.length) % s.length; renderSuggest(); }
+  else if ((e.key === 'Enter' || e.key === 'Tab' || e.key === ',') && s.length) { e.preventDefault(); addTag(s[state.active].tag); }
+  else if (e.key === 'Enter') e.preventDefault();
+  else if (e.key === 'Backspace' && !q.value && state.tags.length) { state.tags.pop(); render(); }
+  else if (e.key === 'Escape') { q.value = state.text = ''; renderSuggest(); render(); q.blur(); }
 });
-
+q.addEventListener('blur', () => setTimeout(() => { suggest.hidden = true; q.setAttribute('aria-expanded', false); }, 120));
+q.addEventListener('focus', renderSuggest);
+suggest.addEventListener('mousedown', e => { const li = e.target.closest('li'); if (li) { e.preventDefault(); addTag(li.dataset.tag); } });
+$('sbox').addEventListener('click', e => {
+  const tok = e.target.closest('[data-remove]');
+  if (tok) { state.tags = state.tags.filter(t => t !== tok.dataset.remove); render(); }
+  q.focus();
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('.tag[data-tag]');
+  if (b) { toggleTag(b.dataset.tag); if (b.closest('.card')) window.scrollTo({ top: 0, behavior: 'smooth' }); }
+});
 document.querySelectorAll('.sort').forEach(b => b.addEventListener('click', () => {
   const s = b.dataset.sort;
   if (s === 'random') { state.seed = Math.random(); setSort(s, 1); }
   else setSort(s, state.sort === s ? -state.dir : (s === 'updated' ? -1 : 1));
   render();
 }));
-
-document.querySelectorAll('[data-quick]').forEach(a => a.addEventListener('click', e => {
-  e.preventDefault();
-  ['type', 'genre', 'subject', 'status'].forEach(f => setOpt(f, ''));
-  const [f, v] = a.dataset.quick.split(':');
-  setOpt(f, v);
-  document.querySelectorAll('.nav-links a').forEach(x => x.classList.toggle('on', x === a));
-  render();
-}));
-document.querySelector('.nav-links a[href="/"]').addEventListener('click', e => {
-  e.preventDefault();
-  ['type', 'genre', 'subject', 'status'].forEach(f => setOpt(f, ''));
-  q.value = state.q = '';
-  document.querySelectorAll('.nav-links a').forEach((x, i) => x.classList.toggle('on', i === 0));
-  render();
-});
-
-let t;
-q.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { state.q = q.value.trim(); render(); }, 80); });
 document.addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
-  else if (e.key === 'Escape' && document.activeElement === q) { q.value = ''; state.q = ''; render(); q.blur(); }
 });
 
 // restore from URL
 const params = new URLSearchParams(location.search);
-for (const f of ['type', 'genre', 'subject', 'status']) if (params.get(f)) setOpt(f, params.get(f));
-if (params.get('q')) q.value = state.q = params.get('q');
-const sp = (params.get('sort') || '').match(/^(title|updated|type|random)_(asc|desc)$/);
+const known = new Set(TAGS.map(t => t.tag));
+state.tags = (params.get('tags') || '').split(',').map(t => t.trim().toLowerCase()).filter(t => known.has(t));
+const sp = (params.get('sort') || '').match(/^(title|updated|random)_(asc|desc)$/);
 setSort(sp ? sp[1] : 'updated', sp ? (sp[2] === 'asc' ? 1 : -1) : -1);
 render();
 </script>
